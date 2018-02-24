@@ -1,0 +1,21 @@
+<ul class="media-list">
+  <% @favorite_microposts.each do |favorite_micropost| %>
+    <li class="media">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(favorite_micropost.user, options = { size: 50 }) %>" alt="">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to favorite_micropost.user.name, user_path(favorite_micropost.user) %>
+        </div>
+        <div>
+          <p><%= favorite_micropost.content %></p>
+        </div>
+        <div>
+          <%= render 'favorites/favorite_btn', micropost: favorite_micropost %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate @favorite_microposts %>
+</ul>
